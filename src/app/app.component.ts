@@ -12,10 +12,16 @@ export class AppComponent {
   email: string = 'test';
   password: string = 'test';
 
+  displayName = '';
+
   constructor(public userService: UserService){}
 
   ngOnInit()  {
     this.login();
+    this.userService.getUser().subscribe(
+      user => {this.displayName = user.name
+        console.log(user.name);
+      });
   }
 
   login() {
